@@ -1,0 +1,104 @@
+##update yaptiktan sonra view yanlis calisiyor##
+##update yaptiktan sonra view yanlis calisiyor##
+##update yaptiktan sonra view yanlis calisiyor##
+##update yaptiktan sonra view yanlis calisiyor##
+##########################     Q3  ############################
+
+def main():
+    # Görevlerin saklanacağı bir dictionary
+    customers= {}
+    customers_no=1
+    # Programın ana döngüsü
+    while True:
+        print("\n--- To-Do List ---")
+        print("1. Add Customers ")
+        print("2. Update Customers ")
+        print("3. Delete Customers")
+        print("4. View Customers")
+        print("5. Exit")
+
+        
+        choice = input("Choose an option (1-4): ")
+
+        # musteri ekleme
+        if choice == "1":
+            name = input("Enter the customer`s name")
+            surname = input("Enter the customer`s name")
+            email = input("Enter the customer`s mail")
+            tel = int(input("Enter the customer`s tel"))
+            customers[customers_no]= {"Ad": name, "Soyad": surname, "E-posta": email, "Telefon": tel}
+
+            customers_no+=1
+
+        elif choice == "2":
+            if len(customers) == 0:  # Liste kontorl
+                print("No tasks to update")
+            else:
+                print("\nYour customers are:")
+                for id, info in customers.items():
+                    print(f"ID: {id},Customers Infos: {info} ")
+                try:
+                    update_customer = int(input("Enter the number of the task to delete: "))
+                    if 1 <= update_customer <= len(customers):  # numarayı kontrol et
+                        updated_name = input("Enter the new name of the customer: ")
+                        updated_surname = input("Enter the new name of the customer: ")
+                        updated_email = input("Enter the new name of the customer: ")
+                        updated_tel = int(input("Enter the new name of the customer: "))
+                        customers[name] = updated_name
+                        customers[surname] = updated_surname
+                        customers[email] = updated_email
+                        customers[tel] = updated_tel
+
+                        print(f'"{update_customer}" has been updated.')
+                    else:
+                        print("Invalid entry")
+                except ValueError:
+                    print("Please enter a valid number.")
+
+
+
+        elif choice == "3":
+             if len(customers) == 0:  # Liste kontorl
+                 print("No tasks to delete")
+             else:
+                 print("\nYour customers:")
+                 for id, info in customers.items():
+                     print(f"ID: {id},Customers Infos: {info} ")
+
+                 try:
+                     silinecek_customer = int(input("Enter the number of the task to delete: "))
+                     if 1 <= silinecek_customer <= len(customers):  #  numarayı kontrol et
+                         deleted_customer = customers.pop(silinecek_customer - 1)
+                         print(f'"{deleted_customer}" has been deleted.')
+                     else:
+                         print("Invalid entry")
+                 except ValueError:
+                     print("Please enter a valid number.")
+
+        # # Görevleri görüntüleme
+        elif choice == "4":
+
+            if customers:
+                for id, info in customers.items():
+                    print(f"ID: {id},Customers Infos: {info} ")
+
+            else:
+                print("Hic musteri yok!!")
+
+
+        # # Programdan çıkış
+        elif choice == "5":
+             print("Goodbye!")
+             break
+
+        # # Geçersiz giriş
+        else:
+             print("Invalid choice. Please choose a valid option.")
+
+if __name__ == "__main__":
+    main()
+
+##update yaptiktan sonra view yanlis calisiyor##
+##update yaptiktan sonra view yanlis calisiyor##
+##update yaptiktan sonra view yanlis calisiyor##
+##update yaptiktan sonra view yanlis calisiyor##
