@@ -26,7 +26,7 @@ def main():
             surname = input("Enter the customer`s name")
             email = input("Enter the customer`s mail")
             tel = int(input("Enter the customer`s tel"))
-            customers[customers_no]= {"Ad": name, "Soyad": surname, "E-posta": email, "Telefon": tel}
+            customers[customers_no]= {"Ad": name, "Soyad": surname, "E-mail": email, "Telefon": tel}
 
             customers_no+=1
 
