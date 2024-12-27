@@ -1,101 +1,102 @@
 
-##########################     Q3  ############################
-
 def main():
-    # Görevlerin saklanacağı bir dictionary
     customers = {}
     customers_no = 1
-    # Programın ana döngüsü
+
     while True:
-        print("\n--- To-Do List ---")
-        print("1. Add Customers ")
-        print("2. Update Customers ")
+        print("\n--- Customers List ---")
+        print("1. Add Customers")
+        print("2. Update Customers")
         print("3. Delete Customers")
         print("4. View Customers")
         print("5. Exit")
 
-        choice = input("Choose an option (1-4): ")
+        choice = input("Choose an option (1-5): ")
 
-        # musteri ekleme
-        if choice == "1":
-            name = input("Enter the customer`s name")
-            surname = input("Enter the customer`s name")
-            email = input("Enter the customer`s mail")
-            tel = int(input("Enter the customer`s tel"))
+        if choice == "1":  # Müşteri ekleme
+            name = input("Enter the customer's name: ")
+            surname = input("Enter the customer's surname: ")
+            email = input("Enter the customer's email: ")
+
+            # Telefon numarası doğrulama
+            while True:
+                try:
+                    tel = int(input("Enter the customer's telephone: "))
+                    break
+                except ValueError:
+                    print("Please enter a valid number for the telephone.")
+
             customers[customers_no] = {"Ad": name, "Soyad": surname, "E-mail": email, "Telefon": tel}
-
+            print(f"Customer {customers_no} added successfully!")
             customers_no += 1
 
-        elif choice == "2":
-            if len(customers) == 0:  # Liste kontorl
-                print("No tasks to update")
-            else:
-                print("\nYour customers are:")
-                for id, info in customers.items():
-                    print(f"ID: {id},Customers Infos: {info} ")
-                try:
-                    update_customer = int(input("Enter the number of the customer to update: "))
-                    if 1 <= update_customer <= len(customers):  # numarayı kontrol et
-                        if update_customer in customers:
-                            updated_name = input("Enter the new name of the customer: ")
-                            updated_surname = input("Enter the new surname of the customer: ")
-                            updated_email = input("Enter the new mail of the customer: ")
-                            updated_tel = int(input("Enter the new tel of the customer: "))
-                            customers[update_customer]["name"] = updated_name
-                            customers[update_customer]["surname"] = updated_surname
-                            customers[update_customer]["Email"] = updated_email
-                            customers[update_customer]["Tel"] = updated_tel
-                            print(f'"{update_customer}" has been updated.')
-                        else:
-                            print("Invalid entry")
-
-
-                    else:
-                        print("Invalid entry")
-                except ValueError:
-                    print("Please enter a valid number.")
-
-
-
-        elif choice == "3":
-            if len(customers) == 0:  # Liste kontorl
-                print("No customer to delete")
+        elif choice == "2":  # Müşteri güncelleme
+            if not customers:
+                print("No customers to update.")
             else:
                 print("\nYour customers:")
                 for id, info in customers.items():
-                    print(f"ID: {id},Customers Infos: {info} ")
+                    print(f"ID: {id}, Customers Infos: {info}")
 
                 try:
-                    silinecek_customer = int(input("Enter the number of the task to delete: "))
-                    if 1 <= silinecek_customer <= len(customers):  # numarayı kontrol et
-                        deleted_customer = customers.pop(silinecek_customer - 1)
-                        print(f'"{deleted_customer}" has been deleted.')
+                    update_customer = int(input("Enter the ID of the customer to update: "))
+                    if update_customer in customers:
+                        updated_name = input("Enter the new name of the customer: ")
+                        updated_surname = input("Enter the new surname of the customer: ")
+                        updated_email = input("Enter the new email of the customer: ")
+
+                        # Telefon numarası doğrulama
+                        while True:
+                            try:
+                                updated_tel = int(input("Enter the new telephone of the customer: "))
+                                break
+                            except ValueError:
+                                print("Please enter a valid number for the telephone.")
+
+                        # Doğru anahtar isimleri
+                        customers[update_customer] = {
+                            "Ad": updated_name,
+                            "Soyad": updated_surname,
+                            "E-mail": updated_email,
+                            "Telefon": updated_tel
+                        }
+                        print(f"Customer {update_customer} has been updated.")
                     else:
-                        print("Invalid entry")
+                        print("Customer ID does not exist.")
                 except ValueError:
                     print("Please enter a valid number.")
 
-        # # Görevleri görüntüleme
-        elif choice == "4":
+        elif choice == "3":  # Müşteri silme
+            if not customers:
+                print("No customers to delete.")
+            else:
+                print("\nYour customers:")
+                for id, info in customers.items():
+                    print(f"ID: {id}, Customers Infos: {info}")
 
+                try:
+                    delete_customer = int(input("Enter the ID of the customer to delete: "))
+                    if delete_customer in customers:
+                        delete_customer = customers.pop(delete_customer)
+                        print(f"Customer {delete_customer} has been deleted.")
+                    else:
+                        print("Customer ID does not exist.")
+                except ValueError:
+                    print("Please enter a valid number.")
+
+        elif choice == "4":  # Müşteri görüntüleme
             if customers:
                 for id, info in customers.items():
-                    print(f"ID: {id},Customers Infos: {info} ")
-
+                    print(f"ID: {id}, Customers Infos: {info}")
             else:
-                print("Hic musteri yok!!")
+                print("No customers found!")
 
-
-        # # Programdan çıkış
-        elif choice == "5":
+        elif choice == "5":  # Programdan çıkış
             print("Goodbye!")
             break
 
-        # # Geçersiz giriş
-        else:
+        else:  # Geçersiz giriş
             print("Invalid choice. Please choose a valid option.")
-
 
 if __name__ == "__main__":
     main()
-
